@@ -54,4 +54,34 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, clickHandler.getClicks)
 		.post(isLoggedIn, clickHandler.addClick)
 		.delete(isLoggedIn, clickHandler.resetClicks);
+		
+	function isValidDate(d) {
+		//Source: http://stackoverflow.com/questions/1353684/detecting-an-invalid-date-date-instance-in-javascript
+		if (Object.prototype.toString.call(d) !== "[object Date]") {
+			return false;
+		} else {
+			return !isNaN(d.getTime());
+		}
+	}
+		
+	app.route('/:timestring')
+		.get(function(req, res) {
+			var dateString = req.params['timestring'];
+			if (!isNaN(Number(dateString))) {
+				dateString = Number(dateString);
+			}
+			var currentDate = new Date(dateString);
+			if (isValidDate(currentDate)) {
+				res.json({
+					'unix': currentDate.valueOf(),
+					'nature': currentDate.toDateString()
+				});	
+			} else {
+				res.json({
+					'unix': null,
+					'nature': null
+				});
+			}
+			
+		});
 };
