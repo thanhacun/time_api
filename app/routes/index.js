@@ -68,12 +68,13 @@ module.exports = function (app, passport) {
 		.get(function(req, res) {
 			var dateString = req.params['timestring'];
 			if (!isNaN(Number(dateString))) {
-				dateString = Number(dateString);
+				//May be unix timestamp
+				dateString = Number(dateString) * 1000;
 			}
 			var currentDate = new Date(dateString);
 			if (isValidDate(currentDate)) {
 				res.json({
-					'unix': currentDate.valueOf(),
+					'unix': currentDate.valueOf() / 1000,
 					'nature': currentDate.toDateString()
 				});	
 			} else {
