@@ -9,26 +9,26 @@
 	</head>
 
 	<header>
-		<p>Welcome, <span id="display-name"></span>!</p>
-		<a class="menu" href="/profile">Profile</a>
-		<p>|</p>
-		<a class="menu" href="/logout">Logout</a>
+		<h1>API Basejump: Timestamp mircoservice <span id="display-name"></span>!</h1>
 	</header>
 
 	<body>
 		<div class="container">
-			<img src="/public/img/clementine_150.png" />
-			<br />
-			<p class="clementine-text">Timestamp microservice</p>
+			<h1>User stories:</h1>
+			<p>I can pass a string as a parameter, and I will check to see whether that string contains either a unix timestamp or natural language date (ex: March 24, 2016)</p>
+			<p>If it does, it returns both the Unix timestamp and the natural language form of that date</p>
+			<p>If it does not, it returns nulls</p>
 		</div>
-	
+		
 		<div class="container">
-			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
-			<br />
-			<div class="btn-container">
-				<button type="submit" class="btn btn-add">CLICK ME!</button>
-				<button class="btn btn-delete">RESET</button>
-			</div>
+			<h2>Exmaple usage:</h2>
+			<code>https://thcn-time-api.herokuapp.com/March%2024,%202016</code></br>
+			<code>https://thcn-time-api.herokuapp.com/1450137600</code>
+		</div>
+		
+		<div class="container">
+			<h2>Example output:</h2>
+			<code>{ "unix": 1450137600, "natural": "December 15, 2015"}</code>
 		</div>
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
